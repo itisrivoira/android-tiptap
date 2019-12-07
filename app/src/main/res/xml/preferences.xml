@@ -14,8 +14,9 @@
         android:defaultValue="true"
         android:key="errori"
         android:title="Errori" />
-    <SwitchPreference
+   <!-- <SwitchPreference
         android:defaultValue="false"
         android:key="tempo"
         android:title="Tempo" />
+        -->
 </PreferenceScreen>

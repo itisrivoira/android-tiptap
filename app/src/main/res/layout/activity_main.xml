@@ -175,11 +175,14 @@
         android:id="@+id/imgSetting"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnRipeti"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:srcCompat="@drawable/setting" />
+        app:layout_constraintStart_toEndOf="@+id/btnFine"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        app:layout_constraintVertical_bias="0.505"
+        app:srcCompat="@drawable/setting_bianco" />
 
 </android.support.constraint.ConstraintLayout>

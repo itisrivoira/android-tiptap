@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Boolean iniziasfida=false;
     private int cont=0, indice=0, vite=3;
     private SharedPreferences pref;
-
+    private String stringa; //Stringa per salvare la sequenza
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btnFine:
                 imposta(110,false,true,false, true, true);
-                String stringa=giocate.get(indice).toString();
+                stringa=giocate.get(indice).toString();
                 if(stringa.isEmpty()){
                     Toast.makeText(this,"nessuna giocata",Toast.LENGTH_LONG).show();
                     giocate.remove(indice);
@@ -104,27 +104,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnRipeti:
-                Thread th= new Thread(){
-                    @Override
-                    public void run(){
-                        imposta(255,false,true,false, true, true);
-                        btnInizia.setClickable(false);
-                        btnRipeti.setClickable(false);
-                        btnSfida.setClickable(false);
-                        giocate.get(indice-1).ripeti(img1,img2,img3,img4,200);
-                        imposta(110,false,true,false, true, true);
-                        btnInizia.setClickable(true);
-                        btnRipeti.setClickable(true);
-                        btnSfida.setClickable(true);
-                    }
-                };
-                th.start();
+                if(controlloSequenza()) {
+                    Thread th = new Thread() {
+                        @Override
+                        public void run() {
+                            imposta(255, false, true, false, true, true);
+                            btnInizia.setClickable(false);
+                            btnRipeti.setClickable(false);
+                            btnSfida.setClickable(false);
+                            giocate.get(indice - 1).ripeti(img1, img2, img3, img4, 500);
+                            imposta(110, false, true, false, true, true);
+                            btnInizia.setClickable(true);
+                            btnRipeti.setClickable(true);
+                            btnSfida.setClickable(true);
+                        }
+                    };
+                    th.start();
+                }
                 break;
 
             case R.id.btnSfida:
-                iniziasfida=true;
-                imposta(255,true,false,false, false,false);
-                cont=0;
+                if(controlloSequenza()) {
+                    iniziasfida = true;
+                    imposta(255, true, false, false, false, false);
+                    cont = 0;
+                }
                 break;
 
             case R.id.imgSetting:
@@ -192,6 +196,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         finestra.setIcon(icona);
         finestra.create();
         finestra.show();
+
+    }
+
+    private boolean controlloSequenza(){
+        if(stringa.isEmpty()){
+            Toast.makeText(this, "nessuna sequenza inserita", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 }
