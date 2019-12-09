@@ -1,6 +1,7 @@
 package com.example.studente4c.imggioco;
 
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -24,6 +25,7 @@ public class SettingsActivity extends PreferenceActivity {
     public static class MainSettingsFragment extends PreferenceFragment{
 
         private SettingsActivity settingsActivity;
+        private ListPreference listPreference;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,21 @@ public class SettingsActivity extends PreferenceActivity {
 
             addPreferencesFromResource(R.xml.preferences);
             vite = (SwitchPreference) findPreference("vite");
-            Preference test = findPreference("nVite");
-            test.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            listPreference = (ListPreference) findPreference("nVite");
+            listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Toast.makeText(getContext(),newValue.toString(), Toast.LENGTH_SHORT).show();
                     //settingsActivity.cambiaNVite(newValue.toString());
+                    return true;
+                }
+            });
+            vite.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if(vite.isEnabled()){
+                        //listPreference
+                    }
                     return true;
                 }
             });

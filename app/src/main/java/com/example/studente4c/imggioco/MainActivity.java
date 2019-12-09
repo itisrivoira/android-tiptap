@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        vite =  pref.getInt("nVite", 3);
+        vite = Integer.parseInt(pref.getString("nVite","3"));
     }
 
     @Override
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sfida(int n){
+        int nVite=Integer.parseInt(pref.getString("nVite","3"));
         if(n!=giocate.get(indice-1).getSeguenza().get(cont).getValore()){
             if(pref.getBoolean("vite",true)) {
                 vite--;
@@ -170,14 +171,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             if (cont==giocate.get(indice - 1).getSeguenza().size()-1){
-                vite = pref.getInt("nVite", 3);;
+                vite = nVite;
                 stampaAlert("WIN","HAI INDOVINATO LA SEGUENZA",R.drawable.v);
             }
             cont++;
         }
         if(vite==-1){
             stampaAlert("GAME OVER","HAI SBAGLIATO LA SEGUENZA",R.drawable.x);
-            vite =  pref.getInt("nVite", 3);
+            vite = nVite;
         }
     }
 

@@ -4,12 +4,19 @@
         android:defaultValue="true"
         android:key="vite"
         android:title="Vite" />
-    <SeekBarPreference
+
+    <ListPreference
+        android:key="nVite"
+        android:title="Numero vite"
+        android:entries="@array/listaVite"
+        android:entryValues="@array/listaVite"/>
+
+    <!--<SeekBarPreference
         android:defaultValue="3"
         android:key="nVite"
         android:max="5"
         android:text="Numero Vite"
-        android:title="numeroVite" />
+        android:title="numeroVite" />-->
     <SwitchPreference
         android:defaultValue="true"
         android:key="errori"
