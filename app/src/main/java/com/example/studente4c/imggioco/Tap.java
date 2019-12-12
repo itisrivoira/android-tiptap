@@ -5,15 +5,15 @@ public class Tap {
     private int valore;
     private long durataTap, momentoTap;
 
-    public int getValore() { //ritrona il valore
+    public int getValore() { //Return valore
         return valore;
     }
 
-    public long getMomentoTap() {
+    public long getMomentoTap() { //Return momentoTap
         return momentoTap;
     }
 
-    public Tap(int valore, long momentoTap) { //costruttore, creo il valore e momento tap
+    public Tap(int valore, long momentoTap) { //Costruttore, creo il valore e momento tap
         this.valore = valore;
         this.momentoTap = momentoTap;
     }

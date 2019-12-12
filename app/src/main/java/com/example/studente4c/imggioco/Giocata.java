@@ -12,29 +12,29 @@ import java.util.List;
 public class Giocata {
 
     private long start;
-    private ArrayList<Tap> seguenza=new ArrayList<>(); //salvare la sequenza
+    private ArrayList<Tap> seguenza=new ArrayList<>(); //ArrayList per salvare la sequenza
     private MainActivity activity=new MainActivity();
     private int cont=0;
     private Boolean flag=true;
 
-    public ArrayList<Tap> getSeguenza() { //returna la sequenza
+    public ArrayList<Tap> getSeguenza() { //return della sequenza
         return seguenza;
     }
 
-    public Giocata(long start) { //costruttore
+    public Giocata(long start) { //Costruttore
         this.start = start;
     }
 
-    public void aggiungi(Context c, int nImg){ //aggiunge un elemento alla sequenza
+    public void aggiungi(Context c, int nImg){ //Serve per aggiungere un elemento alla sequenza
         seguenza.add(new Tap(nImg,System.currentTimeMillis()));
     }
 
-    public long momentoTap(){
+    public long momentoTap(){ // Serve per controllare il tempo
         return seguenza.get(seguenza.size()-1).getMomentoTap()-start;
-    } //tempo
+    }
 
     @Override
-    public String toString() { //converte la sequenza in una stringa
+    public String toString() { //Converte la sequenza in una stringa
         super.toString();
         String stringa="";
         int i=0;
@@ -46,7 +46,7 @@ public class Giocata {
         return stringa;
     }
 
-    public void ripeti(ImageView img1,ImageView img2,ImageView img3,ImageView img4, int attesa){
+    public void ripeti(ImageView img1,ImageView img2,ImageView img3,ImageView img4, int attesa){ //Metododo che serve per far vedere all'utente la sequenza cliccata
         for(Tap t : seguenza){
             switch (t.getValore()){
                 case 1:
@@ -69,12 +69,12 @@ public class Giocata {
     }
 
     private void ripetiImg(final ImageView img, int attesa){
-        try { //attesa
+        try { //Attesa
             Thread.sleep(attesa);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        activity.runOnUiThread(new Runnable() { // serve per pressare img
+        activity.runOnUiThread(new Runnable() { // Il suo funzionamento è quello di pressare l'img
             @Override
             public void run() {
                 img.setPressed(true);
@@ -85,7 +85,7 @@ public class Giocata {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        activity.runOnUiThread(new Runnable() { //setti non pressato
+        activity.runOnUiThread(new Runnable() { // Il suo funzionamento è quello di non pressare l'img
             @Override
             public void run() {
                 img.setPressed(false);
