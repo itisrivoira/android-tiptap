@@ -13,7 +13,7 @@ public class Tap {
         return momentoTap;
     }
 
-    public Tap(int valore, long momentoTap) { //Costruttore, creo il valore e momento tap
+    public Tap(int valore, long momentoTap) { //Costruttore, assegno il valore e momento tap
         this.valore = valore;
         this.momentoTap = momentoTap;
     }

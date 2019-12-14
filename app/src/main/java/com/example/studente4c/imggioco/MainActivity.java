@@ -196,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         finestra.setIcon(icona);
         finestra.create();
+        finestra.setCancelable(false); //se clicco fuori, l'alert dialog non si cancella
         finestra.show();
 
     }

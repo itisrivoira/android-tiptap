@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -26,51 +29,39 @@ public class SettingsActivity extends PreferenceActivity {
 
         private SettingsActivity settingsActivity;
         private ListPreference listPreference;
+        private PreferenceScreen preferenceScreen;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            settingsActivity = new SettingsActivity();
-
             addPreferencesFromResource(R.xml.preferences);
+
+            PreferenceManager preferenceManager = getPreferenceManager();
+
+            preferenceScreen = getPreferenceScreen();
+
+            settingsActivity = new SettingsActivity();
             vite = (SwitchPreference) findPreference("vite");
             listPreference = (ListPreference) findPreference("nVite");
-            listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    Toast.makeText(getContext(),newValue.toString(), Toast.LENGTH_SHORT).show();
-                    //settingsActivity.cambiaNVite(newValue.toString());
-                    return true;
-                }
-            });
+
+           // Toast.makeText(getContext(), String.valueOf(vite.getShouldDisableView()), Toast.LENGTH_SHORT).show();
+
+            if (!preferenceManager.getSharedPreferences().getBoolean("vite", true)){ //controllo iniziale al valore dello switchPreference
+                preferenceScreen.removePreference(listPreference);
+            }
+
             vite.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if(vite.isEnabled()){
-                        //listPreference
+                    if(newValue.equals(false)){ //se lo switchPreference 'vite' è settato a false la listPreference scompare
+                        preferenceScreen.removePreference(listPreference);
+
+                    }else{
+                       preferenceScreen.addPreference(listPreference);
                     }
                     return true;
                 }
             });
         }
-    }
-
-  @Override
-    protected void onResume() {
-        super.onResume();
-
-        /*vite.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-                if( newValue.equals(true)){
-
-                }else{
-
-                }
-
-                return true;
-            }
-        });*/
     }
 }

@@ -6,10 +6,11 @@
         android:title="Vite" />
 
     <ListPreference
+        android:defaultValue="true"
+        android:entries="@array/lista_vite"
+        android:entryValues="@array/lista_vite"
         android:key="nVite"
-        android:title="Numero vite"
-        android:entries="@array/listaVite"
-        android:entryValues="@array/listaVite"/>
+        android:title="Numero vite" />
 
     <!--<SeekBarPreference
         android:defaultValue="3"
