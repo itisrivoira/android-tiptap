@@ -90,33 +90,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else immagineCLick(4);
                 break;
 
-            case R.id.btnFine:
+            case R.id.btnFine: //Fine inserimento sequenza
                 imposta(110,false,true,false, true, true);
                 stringa=giocate.get(indice).toString();
-                if(stringa.isEmpty()){
-                    Toast.makeText(this,"nessuna giocata",Toast.LENGTH_LONG).show();
+                if(!controlloSequenza()){
                     giocate.remove(indice);
                     if (indice>0) indice--;
                 } else{
-                    //Toast.makeText(this,stringa,Toast.LENGTH_LONG).show();
                     indice++;
                 }
                 break;
 
-            case R.id.btnRipeti:
+            case R.id.btnRipeti: //ripeti ultima sequenza
                 if(controlloSequenza()) {
                     Thread th = new Thread() {
                         @Override
                         public void run() {
                             imposta(255, false, true, false, true, true);
-                            btnInizia.setClickable(false);
-                            btnRipeti.setClickable(false);
-                            btnSfida.setClickable(false);
                             giocate.get(indice - 1).ripeti(img1, img2, img3, img4, 500);
                             imposta(110, false, true, false, true, true);
-                            btnInizia.setClickable(true);
-                            btnRipeti.setClickable(true);
-                            btnSfida.setClickable(true);
                         }
                     };
                     th.start();
@@ -131,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
-            case R.id.imgSetting:
+            case R.id.imgSetting: //Impostazioni
                 Intent avviaSetting= new Intent(this,SettingsActivity.class);
                 startActivity(avviaSetting);
                 break;
@@ -141,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    private void immagineCLick(int num){
+    private void immagineCLick(int num){ //aggiunge un valore alla sequenza
         Giocata g=giocate.get(indice);
         g.aggiungi(this,num);
     }
@@ -170,13 +162,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else {
-            if (cont==giocate.get(indice - 1).getSeguenza().size()-1){
+            if (cont==giocate.get(indice - 1).getSeguenza().size()-1){ //Vittoria, imposto il messaggio nell'alert
                 vite = nVite;
                 stampaAlert("WIN","HAI INDOVINATO LA SEGUENZA",R.drawable.v);
             }
             cont++;
         }
-        if(vite==-1){
+        if(vite==-1){ //Vite finite, imposto il messaggio nell'alert
             stampaAlert("GAME OVER","HAI SBAGLIATO LA SEGUENZA",R.drawable.x);
             vite = nVite;
         }
@@ -201,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private boolean controlloSequenza(){
+    private boolean controlloSequenza(){ //controllo se la sequenza è stata inserita
         if(stringa.isEmpty()){
             Toast.makeText(this, "nessuna sequenza inserita", Toast.LENGTH_SHORT).show();
             return false;

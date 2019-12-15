@@ -6,6 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlActivated">#000000</item>
+        <item name="colorSwitchThumbNormal">#000000</item>
+        <item name="colorButtonNormal">#000000</item>
+    </style>
+
+    <style name="SettingTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#242323</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#000000</item>
+        <item name="colorControlActivated">#000000</item>
+        <item name="colorSwitchThumbNormal">#000000</item>
+        <item name="colorButtonNormal">#000000</item>
     </style>
 
 </resources>

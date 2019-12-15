@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <SwitchPreference
         android:defaultValue="true"
         android:key="vite"
-        android:title="Vite" />
+        app:thumbTint="@color/black"
+        app:trackTint="@color/black"
+
+        android:title="Vite"/>
 
     <ListPreference
         android:defaultValue="true"
         android:entries="@array/lista_vite"
         android:entryValues="@array/lista_vite"
         android:key="nVite"
-        android:title="Numero vite" />
+        android:title="Numero vite"
+        />
 
     <!--<SeekBarPreference
         android:defaultValue="3"

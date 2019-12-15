@@ -1,21 +1,14 @@
 package com.example.studente4c.imggioco;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Giocata {
 
     private long start;
     private ArrayList<Tap> seguenza=new ArrayList<>(); //ArrayList per salvare la sequenza
     private MainActivity activity=new MainActivity();
-    private int cont=0;
-    private Boolean flag=true;
 
     public ArrayList<Tap> getSeguenza() { //return della sequenza
         return seguenza;

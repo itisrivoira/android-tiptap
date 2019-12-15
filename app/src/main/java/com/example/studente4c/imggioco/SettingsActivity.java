@@ -1,5 +1,6 @@
 package com.example.studente4c.imggioco;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -23,11 +24,12 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content,new MainSettingsFragment()).commit();
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true); //abilito pulsante indietro nell'actionBar
     }
 
     public static class MainSettingsFragment extends PreferenceFragment{
 
-        private SettingsActivity settingsActivity;
         private ListPreference listPreference;
         private PreferenceScreen preferenceScreen;
 
@@ -40,12 +42,8 @@ public class SettingsActivity extends PreferenceActivity {
 
             preferenceScreen = getPreferenceScreen();
 
-            settingsActivity = new SettingsActivity();
             vite = (SwitchPreference) findPreference("vite");
             listPreference = (ListPreference) findPreference("nVite");
-
-           // Toast.makeText(getContext(), String.valueOf(vite.getShouldDisableView()), Toast.LENGTH_SHORT).show();
-
             if (!preferenceManager.getSharedPreferences().getBoolean("vite", true)){ //controllo iniziale al valore dello switchPreference
                 preferenceScreen.removePreference(listPreference);
             }
@@ -54,10 +52,10 @@ public class SettingsActivity extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if(newValue.equals(false)){ //se lo switchPreference 'vite' è settato a false la listPreference scompare
-                        preferenceScreen.removePreference(listPreference);
+                        preferenceScreen.removePreference(listPreference); //rimuovo la listPreference
 
                     }else{
-                       preferenceScreen.addPreference(listPreference);
+                       preferenceScreen.addPreference(listPreference); //aggiungo la listPreference
                     }
                     return true;
                 }
