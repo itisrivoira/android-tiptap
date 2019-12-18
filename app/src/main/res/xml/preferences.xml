@@ -11,7 +11,7 @@
         android:title="Vite"/>
 
     <ListPreference
-        android:defaultValue="true"
+        android:defaultValue="3"
         android:entries="@array/lista_vite"
         android:entryValues="@array/lista_vite"
         android:key="nVite"
