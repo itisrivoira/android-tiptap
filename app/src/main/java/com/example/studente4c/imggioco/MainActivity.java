@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.UiThread;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,23 +72,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.img1:
-                if(iniziasfida) sfida(1);
-                else immagineCLick(1);
-                break;
-
             case R.id.img2:
-                if(iniziasfida) sfida(2);
-                else immagineCLick(2);
-                break;
-
             case R.id.img3:
-                if(iniziasfida) sfida(3);
-                else immagineCLick(3);
-                break;
-
             case R.id.img4:
-                if(iniziasfida) sfida(4);
-                else immagineCLick(4);
+                if(iniziasfida) sfida(mioId);
+                else immagineCLick(mioId);
                 break;
 
             case R.id.btnFine: //Fine inserimento sequenza
@@ -106,9 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Thread th = new Thread() {
                         @Override
                         public void run() {
-                            imposta(255, false, true, false, true, true);
-                            giocate.get(indice - 1).ripeti(img1, img2, img3, img4, 500);
-                            imposta(110, false, true, false, true, true);
+                            imposta(255,false,true,false, true, true);
+                            impostaPulsanti(false, false, false);
+                            giocate.get(indice-1).ripeti(img1,img2,img3,img4,500);
+                            imposta(110,false,true,false, true, true);
+                            impostaPulsanti(true, true, true);
                         }
                     };
                     th.start();
@@ -151,6 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnFine.setEnabled(clickFine);
         btnRipeti.setEnabled(clickRipeti);
         btnSfida.setEnabled(clickSfida);
+    }
+
+    private void impostaPulsanti(boolean inizia, boolean ripeti, boolean sfida){
+        btnInizia.setClickable(inizia);
+        btnRipeti.setClickable(ripeti);
+        btnSfida.setClickable(sfida);
     }
 
     private void sfida(int n){

@@ -20,6 +20,7 @@
         <item name="colorControlActivated">#000000</item>
         <item name="colorSwitchThumbNormal">#000000</item>
         <item name="colorButtonNormal">#000000</item>
+        <item name="android:popupBackground">@style/ThemeOverlay.AppCompat.Dark</item>
     </style>
 
 </resources>

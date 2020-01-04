@@ -18,7 +18,7 @@ public class Giocata {
         this.start = start;
     }
 
-    public void aggiungi(Context c, int nImg){ //Serve per aggiungere un elemento alla sequenza
+    public void aggiungi(Context c, int nImg){ //Aggiunge un elemento alla sequenza
         seguenza.add(new Tap(nImg,System.currentTimeMillis()));
     }
 
@@ -31,7 +31,7 @@ public class Giocata {
         super.toString();
         String stringa="";
         int i=0;
-        for (Tap x : seguenza){ //for each
+        for (Tap x : seguenza){
             i++;
             stringa+=String.valueOf(x.getValore());
             if(i<seguenza.size()) stringa+=", ";
@@ -39,22 +39,23 @@ public class Giocata {
         return stringa;
     }
 
-    public void ripeti(ImageView img1,ImageView img2,ImageView img3,ImageView img4, int attesa){ //Metododo che serve per far vedere all'utente la sequenza cliccata
+    public void ripeti(ImageView img1,ImageView img2,ImageView img3,ImageView img4, int attesa){ //fa vedere all'utente la sequenza cliccata
+        final int id1 = img1.getId();
         for(Tap t : seguenza){
             switch (t.getValore()){
-                case 1:
+                case R.id.img1:
                     ripetiImg(img1, attesa);
                     break;
 
-                case 2:
+                case R.id.img2:
                     ripetiImg(img2, attesa);
                     break;
 
-                case 3:
+                case R.id.img3:
                     ripetiImg(img3, attesa);
                     break;
 
-                case 4:
+                case R.id.img4:
                     ripetiImg(img4, attesa);
                     break;
             }
